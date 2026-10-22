@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <title>GPA-Calculator</title>
+    <meta name="description" content="录入成绩单或导入教务系统导出的 Excel，按学分加权计算绩点与平均分。" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+    <script src="{{ url_for('static', filename='app.js') }}" defer></script>
+  </head>
+
+  <body>
+    <main class="wrap">
+      <header class="page-head">
+        <h1>GPA-Calculator</h1>
+        <p class="muted">录入成绩单或导入教务系统导出的 Excel，按学分加权计算绩点与平均分。</p>
+      </header>
+
+      <div class="grid4 cloud-stats">
+        <div class="panel stat primary-stat"><span>加权 GPA</span><strong id="stat-gpa">—</strong></div>
+        <div class="panel stat"><span>平均分</span><strong id="stat-avg">—</strong></div>
+        <div class="panel stat"><span>总学分</span><strong id="stat-credits">—</strong></div>
+        <div class="panel stat"><span>课程数</span><strong id="stat-count">—</strong></div>
+      </div>
+
+      <section class="panel" id="courses">
+        <div class="row between">
+          <h3>成绩单 <span id="course-n">3 门</span></h3>
+          <div class="course-actions">
+            <button class="btn" id="addRow">+ 添加</button>
+            <button class="btn" id="resetRows">重置示例</button>
+            <input type="file" id="xlsxFile" accept=".xlsx" hidden />
+            <button class="btn" id="importBtn">↥ 导入 Excel</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="courses">
+            <thead>
+              <tr>
+                <th>课程名称</th>
+                <th>学分</th>
+                <th>成绩 / 等级</th>
+                <th>绩点</th>
+                <th>学期</th>
+                <th aria-label="操作"></th>
+              </tr>
+            </thead>
+            <tbody id="courseBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel" id="report">
+        <h3>报告模板</h3>
+        <div class="report-controls">
+          <label class="field expr">
+            报告表达式
+            <textarea id="expression" spellcheck="false" autocapitalize="off" autocorrect="off">{{ default_expression }}</textarea>
+          </label>
+        </div>
+        <button class="btn primary" id="calcBtn">计算</button>
+      </section>
+
+      <section class="panel" id="result">
+        <div class="row between">
+          <h3>报告输出</h3>
+          <span id="report-status"></span>
+        </div>
+        <pre class="report-body" id="report-body">点击「计算」生成报告。</pre>
+      </section>
+    </main>
+
+    <div id="toast" class="toast" role="status" hidden></div>
+  </body>
+</html>

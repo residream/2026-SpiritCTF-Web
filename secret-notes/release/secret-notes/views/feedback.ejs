@@ -1,0 +1,4 @@
+<div class="feedback feedback-<%= feedback.kind %>" role="<%= feedback.kind === 'error' ? 'alert' : 'status' %>">
+  <span class="feedback-icon"><%- include('icons', { name: feedback.kind === 'success' ? 'check' : 'info' }) %></span>
+  <p><%= feedback.text %></p>
+</div>

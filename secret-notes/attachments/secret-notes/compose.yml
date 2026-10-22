@@ -1,0 +1,16 @@
+services:
+  secret-notes:
+    build: .
+    image: secret-notes:latest
+    container_name: secret-notes
+    ports:
+      - "3000:3000"
+    init: true
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    pids_limit: 128
+    mem_limit: 1024m
+    cpus: "1.0"

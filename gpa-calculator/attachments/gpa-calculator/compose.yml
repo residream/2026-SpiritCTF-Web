@@ -1,0 +1,18 @@
+services:
+  gpa-calculator:
+    build: .
+    image: gpa-calculator:latest
+    container_name: gpa-calculator
+    ports:
+      - "3000:3000"
+    read_only: true
+    tmpfs:
+      - /tmp:rw,nosuid,size=64m
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    pids_limit: 128
+    mem_limit: 1024m
+    cpus: "1.0"
+    restart: unless-stopped

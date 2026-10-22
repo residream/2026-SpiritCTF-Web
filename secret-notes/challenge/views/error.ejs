@@ -1,0 +1,6 @@
+<section class="surface error-panel">
+  <span class="error-code"><%= code %></span>
+  <h1><%= title %></h1><p class="intro"><%= message %></p>
+  <% if (typeof settingsLink !== 'undefined' && settingsLink) { %><a class="button button-primary" href="/settings">打开排序偏好</a>
+  <% } else { %><a class="button button-primary" href="/">返回我的空间</a><% } %>
+</section>

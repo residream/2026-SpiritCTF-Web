@@ -1,0 +1,9 @@
+<section class="surface auth-panel">
+  <div class="panel-heading"><div><h1>欢迎回来</h1><p class="subtitle">登录后查看你的便签。</p></div><span class="badge"><%- include('icons', { name: 'lock' }) %> 私密空间</span></div>
+  <form class="stack" action="/login" method="post" data-submit-form>
+    <div class="field-row"><label for="username">账号</label><input id="username" name="username" value="<%= username %>" autocomplete="username" maxlength="64" required placeholder="你的账号"></div>
+    <div class="field-row"><label for="password">登录密码</label><input id="password" name="password" type="password" autocomplete="current-password" maxlength="256" required placeholder="输入登录密码"></div>
+    <button class="button button-primary full-width" type="submit" data-loading-label="正在打开…">登录 <%- include('icons', { name: 'arrow' }) %></button>
+  </form>
+</section>
+<p class="author-note">登录以查看和管理你的便签。</p>

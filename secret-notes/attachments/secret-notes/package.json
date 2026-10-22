@@ -1,0 +1,16 @@
+{
+  "name": "secret-notes",
+  "version": "1.0.0",
+  "private": true,
+  "description": "秘密便签",
+  "engines": { "node": "20.x" },
+  "scripts": {
+    "start": "node src/app.js"
+  },
+  "dependencies": {
+    "better-sqlite3": "11.10.0",
+    "ejs": "3.1.10",
+    "express": "5.2.1",
+    "express-session": "1.18.2"
+  }
+}

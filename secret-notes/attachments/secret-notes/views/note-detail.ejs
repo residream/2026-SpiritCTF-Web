@@ -1,0 +1,16 @@
+<section class="surface">
+  <div class="panel-heading"><span class="badge"><%- include('icons', { name: note.locked ? 'lock' : 'note' }) %> <%= note.locked ? '锁定便签' : '仅自己可见' %></span><span class="detail-priority">优先级 <%= note.priority %></span></div>
+  <h1 class="note-title"><%= note.title %></h1>
+  <div class="note-meta"><time datetime="<%= note.created_at %>"><%= dateLabel(note.created_at) %></time><span>UTC+08:00</span></div>
+  <% if (noteBody === null) { %>
+  <div class="lock-panel"><%- include('icons', { name: 'lock' }) %><h2>这条便签已锁定。</h2><p>输入锁口令后查看内容。</p></div>
+  <form class="stack" action="/notes/<%= note.id %>/unlock" method="post" data-submit-form>
+    <div class="field-row"><label for="lock_password">锁口令</label><input id="lock_password" name="lock_password" type="password" autocomplete="off" maxlength="256" required placeholder="输入锁口令"></div>
+    <button class="button button-primary full-width" type="submit" data-loading-label="正在打开…">解锁便签 <%- include('icons', { name: 'arrow' }) %></button>
+  </form>
+  <% } else { %>
+  <div class="note-body" id="note-body"><%= noteBody %></div>
+  <div class="article-footer"><span>这条便签仅自己可见。</span><button class="text-action" type="button" data-copy-target="note-body" hidden><%- include('icons', { name: 'copy' }) %> 复制正文</button></div>
+  <% } %>
+</section>
+<a class="back-link" href="/notes">返回我的便签</a>

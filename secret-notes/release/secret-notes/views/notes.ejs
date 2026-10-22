@@ -1,0 +1,16 @@
+<section class="surface notebook">
+  <div class="panel-heading">
+    <div><h1>我的便签</h1><p class="subtitle"><%= currentUser.username %> · 共 <%= notes.length %> 条便签</p></div>
+    <a class="button button-primary button-small" href="/notes/new"><%- include('icons', { name: 'plus' }) %> 新建便签</a>
+  </div>
+  <div class="note-list">
+    <% for (const note of notes) { %>
+    <a class="note-card" href="/notes/<%= note.id %>">
+      <div class="note-card-heading"><h2><%= note.title %></h2><% if (note.locked) { %><span class="visibility" title="锁定便签"><%- include('icons', { name: 'lock' }) %><span class="sr-only">锁定便签</span></span><% } %></div>
+      <p class="note-preview"><%= note.locked ? '已锁定，需输入锁口令后查看。' : '点击查看便签内容。' %></p>
+      <div class="note-meta"><time datetime="<%= note.created_at %>"><%= dateLabel(note.created_at) %></time><span class="time-zone">UTC+08:00</span><span class="priority">优先级 <%= note.priority %></span></div>
+    </a>
+    <% } %>
+    <% if (!notes.length) { %><div class="empty-state"><%- include('icons', { name: 'note' }) %><h2>还没有便签</h2><p>点击「新建便签」开始记录。</p></div><% } %>
+  </div>
+</section>

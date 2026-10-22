@@ -1,0 +1,9 @@
+<section class="surface">
+  <div class="panel-heading"><div><h1>新建便签</h1><p class="subtitle">填写标题和内容后保存。</p></div><span class="badge">仅自己可见</span></div>
+  <form class="stack" action="/notes" method="post" data-submit-form>
+    <div class="field-row"><label for="title">标题</label><input id="title" name="title" value="<%= values.title %>" maxlength="120" required placeholder="便签标题"></div>
+    <div class="field-row"><label for="body">正文</label><textarea id="body" name="body" maxlength="12000" placeholder="便签内容"><%= values.body %></textarea></div>
+    <div class="field-row"><label for="priority">优先级</label><select id="priority" name="priority"><% for (let n = 0; n <= 2; n++) { %><option value="<%= n %>" <%- String(n) === values.priority ? 'selected' : '' %>><%= n %><%= n === 0 ? ' · 日常' : n === 1 ? ' · 重要' : ' · 最重要' %></option><% } %></select><p class="field-hint">优先级越高，便签越靠前。</p></div>
+    <div class="actions"><a class="button button-secondary" href="/notes">取消</a><button class="button button-primary" type="submit" data-loading-label="正在保存…">保存便签 <%- include('icons', { name: 'check' }) %></button></div>
+  </form>
+</section>

@@ -1,0 +1,23 @@
+# ！！！本地测试用
+# flag 由 Dockerfile 里的 ENV FLAG 默认值提供（flag{fake_for_local_test}）
+# 也可在这里用 environment 覆盖
+services:
+  gpa-calculator:
+    build: .
+    image: gpa-calculator:latest
+    container_name: gpa-calculator
+    ports:
+      - "3000:3000"
+    # environment:
+    #   - FLAG=flag{fake_for_local_test}
+    read_only: true
+    tmpfs:
+      - /tmp:rw,nosuid,size=64m
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    pids_limit: 128
+    mem_limit: 1024m
+    cpus: "1.0"
+    restart: unless-stopped

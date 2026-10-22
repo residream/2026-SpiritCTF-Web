@@ -1,0 +1,9 @@
+bind = "0.0.0.0:3000"
+workers = 2
+worker_class = "sync"
+timeout = 10
+graceful_timeout = 10
+keepalive = 5
+accesslog = "-"
+errorlog = "-"
+loglevel = "info"

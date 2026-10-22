@@ -1,0 +1,18 @@
+# 本地仿真线上部署（生产环境 + recon）
+services:
+  secret-notes:
+    build: .
+    image: secret-notes:latest
+    container_name: secret-notes
+    ports:
+      - "3000:3000"
+    # ADMIN_PASSWORD 可通过 environment 设置；不设则每次启动随机生成
+    init: true
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    pids_limit: 128
+    mem_limit: 1024m
+    cpus: "1.0"
